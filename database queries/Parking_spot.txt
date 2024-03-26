@@ -1,13 +1,71 @@
-create table Parking_spot(
-id bigint primary key not null,
-is_occupied boolean,
-created_at timestamp DEFAULT CURRENT_TIMESTAMP,
-last_updated_at timestamp DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
-);
 select * from Parking_spot;
 desc Parking_spot;
-alter table Parking_spot add column parking_lot_id bigint, ADD COLUMN vehicle_id INT;
-alter table Parking_spot modify parking_lot_id bigint after id;
-alter table Parking_spot modify vehicle_id int after parking_lot_id;
-alter table Parking_spot add constraint foreign key (parking_lot_id) references Parking_lot(id);
-alter table Parking_spot add constraint foreign key (vehicle_id) references Vehicle_type(id);
+
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1001,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,101,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1002,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,101,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1003,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,101,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1004,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,101,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1005,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,101,3);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1006,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,101,3);
+
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1007,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,102,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1008,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,102,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1009,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,102,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1010,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,102,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1011,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,102,3);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1012,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,102,3);
+
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1013,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,103,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1014,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,103,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1015,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,103,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1016,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,103,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1017,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,103,3);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1018,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,103,3);
+
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1019,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1020,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1021,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1022,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1023,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1024,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1025,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1026,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,201,2);
+
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1027,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,301,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1028,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,301,1);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1029,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,301,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1030,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,301,2);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1031,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,301,3);
+insert into parking_spot(id,created_at,last_updated_at,is_occupied,parking_lot_id,vehicle_type_id) 
+values (1032,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,false,301,3);
