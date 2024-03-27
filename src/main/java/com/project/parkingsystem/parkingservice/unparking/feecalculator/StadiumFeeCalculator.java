@@ -15,17 +15,16 @@ public class StadiumFeeCalculator implements FeeCalculator {
         double duration = hours;
 
         for(FeeModel feeModel : feeModels) {
-            // Check if the parking duration falls within the current interval
             if (feeModel.getStart() <= hours) {
                 totalFee += feeModel.getBaseFee();
                 if(feeModel.getEnd()!=null) {
                     if (feeModel.getEnd() <= hours) {
                         double intervalDifference = feeModel.getEnd()-feeModel.getStart();
-                        duration -= intervalDifference;
+                        duration-= intervalDifference;
                     }
                 }
+                totalFee+=duration*feeModel.getHourlyRate();
             }
-            totalFee+=duration*feeModel.getHourlyRate();
         }
 
         return totalFee;
