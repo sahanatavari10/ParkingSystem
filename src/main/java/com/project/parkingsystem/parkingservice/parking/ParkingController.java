@@ -17,7 +17,7 @@ public class ParkingController {
     public ResponseEntity<?> parking(@RequestBody ParkingRequest request) {
         ParkingResponse response = parkingService.parkVehicle(request);
         if (response.getMessage() !=null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
         return ResponseEntity.ok(response);
     }

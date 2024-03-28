@@ -15,15 +15,19 @@ public class StadiumFeeCalculator implements FeeCalculator {
         double duration = hours;
 
         for(FeeModel feeModel : feeModels) {
-            if (feeModel.getStart() <= hours) {
-                totalFee += feeModel.getBaseFee();
-                if(feeModel.getEnd()!=null) {
-                    if (feeModel.getEnd() <= hours) {
-                        double intervalDifference = feeModel.getEnd()-feeModel.getStart();
-                        duration-= intervalDifference;
+            if(feeModel.isStartInclusive()) {
+                if (feeModel.getStart() < hours) {
+                    totalFee += feeModel.getBaseFee();
+                    if (feeModel.getEnd() != null) {
+                        if (!feeModel.isEndInclusive()) {
+                            if (feeModel.getEnd() <= hours) {
+                                double intervalDifference = feeModel.getEnd() - feeModel.getStart();
+                                duration -= intervalDifference;
+                            }
+                        }
                     }
+                    totalFee += duration * feeModel.getHourlyRate();
                 }
-                totalFee+=duration*feeModel.getHourlyRate();
             }
         }
 

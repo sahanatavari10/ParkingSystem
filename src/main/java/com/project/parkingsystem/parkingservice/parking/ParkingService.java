@@ -9,20 +9,24 @@ import java.util.Optional;
 
 @Service
 public class ParkingService {
+    private final ParkingLotRepository parkingLotRepository;
+    private final ParkingEntityRepository parkingEntityRepository;
+    private final ParkingSpotRepository parkingSpotRepository;
+    private final ParkingTicketRepository parkingTicketRepository;
+    private final VehicleTypeRepository vehicleTypeRepository;
 
     @Autowired
-    private ParkingEntityRepository parkingEntityRepository;
-    @Autowired
-    private ParkingLotRepository parkingLotRepository;
-
-    @Autowired
-    private ParkingSpotRepository parkingSpotRepository;
-
-    @Autowired
-    private ParkingTicketRepository parkingTicketRepository;
-
-    @Autowired
-    private VehicleTypeRepository vehicleTypeRepository;
+    public ParkingService(ParkingLotRepository parkingLotRepository,
+                          ParkingEntityRepository parkingEntityRepository,
+                          ParkingSpotRepository parkingSpotRepository,
+                          ParkingTicketRepository parkingTicketRepository,
+                          VehicleTypeRepository vehicleTypeRepository) {
+        this.parkingLotRepository = parkingLotRepository;
+        this.parkingEntityRepository = parkingEntityRepository;
+        this.parkingSpotRepository = parkingSpotRepository;
+        this.parkingTicketRepository = parkingTicketRepository;
+        this.vehicleTypeRepository = vehicleTypeRepository;
+    }
 
     public ParkingResponse parkVehicle(ParkingRequest request) {
 
@@ -62,7 +66,6 @@ public class ParkingService {
         response.setTicketId(parkingTicket.getId().toString());
         response.setParkingSpotId(parkingSpot.getId().toString());
         response.setEntryTime(parkingTicket.getEntryTime().toString());
-        response.setMessage("Vehicle is parked");
         return response;
     }
 }
