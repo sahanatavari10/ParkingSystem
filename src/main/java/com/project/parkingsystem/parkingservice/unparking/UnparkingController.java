@@ -13,9 +13,9 @@ public class UnparkingController {
     private UnparkingService unparkingService;
 
     @PutMapping
-    public ResponseEntity<UnparkingResponse> unparkVehicle(@RequestBody UnparkingRequest request) {
-        UnparkingResponse response = unparkingService.unparkVehicle(request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<?> unparkVehicle(@RequestBody UnparkingRequest request) {
+        ResponseEntity<?> response = unparkingService.unparkVehicle(request);
+        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 }
 

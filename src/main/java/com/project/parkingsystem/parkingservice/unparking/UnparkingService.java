@@ -9,6 +9,8 @@ import com.project.parkingsystem.parkingservice.unparking.feecalculator.FeeCalcu
 import com.project.parkingsystem.parkingservice.unparking.feecalculator.MallFeeCalculator;
 import com.project.parkingsystem.parkingservice.unparking.feecalculator.StadiumFeeCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -42,10 +44,11 @@ public class UnparkingService {
         this.airportFeeCalculator = airportFeeCalculator;
     }
 
-    public UnparkingResponse unparkVehicle(UnparkingRequest request) {
+    public ResponseEntity<?> unparkVehicle(UnparkingRequest request) {
         Optional<ParkingTicket> optionalParkingTicket = parkingTicketRepository.findById(request.getTicketId());
         if (optionalParkingTicket.isEmpty()) {
-            return new UnparkingResponse("Parking ticket not found");
+            UnparkingResponse response = new UnparkingResponse("Parking ticket not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
         ParkingTicket parkingTicket = optionalParkingTicket.get();
 
@@ -63,7 +66,8 @@ public class UnparkingService {
 
         List<FeeModel> feeModels = feeModelRepository.findByParkingEntityIdAndVehicleTypeId(parkingTicket.getParkingSpot().getParkingLot().getParkingEntity().getId(), parkingTicket.getParkingSpot().getVehicleType().getId());
         if (feeModels.isEmpty()) {
-            return new UnparkingResponse("Fee model not found");
+            UnparkingResponse response = new UnparkingResponse("Parking entity or Vehicle type not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 
         feeCalculatorMap.put(1L, mallFeeCalculator);
@@ -72,7 +76,8 @@ public class UnparkingService {
 
         feeCalculator = feeCalculatorMap.get(parkingTicket.getParkingSpot().getParkingLot().getParkingEntity().getId());
         if (feeCalculator == null) {
-            return new UnparkingResponse("Invalid parking entity");
+            UnparkingResponse response = new UnparkingResponse("Parking entity not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
 
         double fee = feeCalculator.calculateFee(hours, feeModels);
@@ -93,7 +98,8 @@ public class UnparkingService {
         response.setExitTime(exitTime);
         response.setAmount(fee);
         response.setParkingSpotId(spot);
+        response.setMessage("Vehicle is unparked");
 
-        return response;
+        return ResponseEntity.ok().body(response);
     }
 }

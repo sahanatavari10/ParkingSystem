@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ParkingLotRepository extends JpaRepository<ParkingLot, Long> {
+
+    ParkingLot findByName(String lotName);
     ParkingLot findByNameAndParkingEntityId(String lotName, Long parkingEntityName);
 }
